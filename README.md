@@ -12,6 +12,7 @@ re-write paths and create `css-resources` folder
 
 ```
 npm install
+node fuse
 ```
 
 Visit `http://localhost:7775/`

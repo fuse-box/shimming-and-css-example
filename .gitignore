@@ -39,3 +39,4 @@ jspm_packages
 .fusebox
 dist/css-resources
 dist/bundle.js
+.vscode

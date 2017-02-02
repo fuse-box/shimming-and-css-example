@@ -11,7 +11,10 @@ const fuseBox = FuseBox.init({
         }
     },
     plugins: [
-        [/node_modules.*\.css$/, fsbx.CSSResourcePlugin(), fsbx.CSSPlugin()]
+        [/node_modules.*\.css$/,
+            fsbx.CSSResourcePlugin({ inline: true }),
+            fsbx.CSSPlugin()
+        ]
     ]
 });
 

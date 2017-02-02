@@ -1,17 +1,18 @@
 # shimming-and-css-example
 
-And example how to shim jquery and "fix" a required css from npm
+An example how to shim jquery and "fix" a required css from npm
 
 
 ```js
 import "jstree/dist/jstree.js";
 import "jstree/dist/themes/default/style.css";
 ```
-In this example, fusebox will automatically copy resources from the target css,
-re-write  paths and create `css-resources` folder
+FuseBox will automatically copy resources from the target css `jstree/dist/themes/default/style.css`
+re-write paths and create `css-resources` folder
 
 ```
 npm install
+node fuse
 ```
 
 Visit `http://localhost:7775/`

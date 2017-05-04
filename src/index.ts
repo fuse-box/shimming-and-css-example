@@ -1,3 +1,4 @@
+import * as $ from "jquery";
 import "jstree/dist/jstree.js";
 import "jstree/dist/themes/default/style.css";
 

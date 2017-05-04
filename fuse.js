@@ -1,23 +1,34 @@
-const fsbx = require("fuse-box");
-const FuseBox = fsbx.FuseBox;
+const {FuseBox, HTMLPlugin, Sparky, WebIndexPlugin, CSSResourcePlugin, CSSPlugin} = require("fuse-box");
 
-const fuseBox = FuseBox.init({
+const fuse = FuseBox.init({
     homeDir: "src",
-    outFile: "dist/bundle.js",
-    shim: {
-        jquery: {
-            exports: "$",
-            source: "node_modules/jquery/dist/jquery.min.js"
-        }
-    },
+    output: "dist/$name.js",
+    cache: true,
     plugins: [
         [/node_modules.*\.css$/,
-            fsbx.CSSResourcePlugin({ inline: true }),
-            fsbx.CSSPlugin()
-        ]
+            CSSResourcePlugin({inline: true}),
+            CSSPlugin()
+        ],
+        WebIndexPlugin({title: "Welcome to FuseBox"})
     ]
 });
 
-fuseBox.devServer(">index.ts", {
-    port: 7775
-});
+fuse.dev({port: 7775});
+
+fuse.bundle("app")
+    .shim({
+        jquery: {
+            source: "node_modules/jquery/dist/jquery.js",
+            exports: "$"
+        }
+    })
+    .watch()
+// this bundle will not contain HRM related code (as only the first one gets it)
+// but we would want to HMR it
+    .hmr()
+    // enable sourcemaps for our package
+    .sourceMaps(true)
+    // bundle without deps (we have a vendor for that) + without the api
+    .instructions("> index.ts");
+
+fuse.run();

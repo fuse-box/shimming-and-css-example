@@ -40,3 +40,4 @@ jspm_packages
 dist/css-resources
 dist/bundle.js
 .vscode
+.idea
